@@ -1,6 +1,6 @@
 {
   "name": "trackly-react",
-  "version": "0.1.4",
+  "version": "0.1.1",
   "description": "React integration for trackly-sdk",
   "main": "dist/index.js",
   "module": "dist/index.js",
