@@ -1,7 +1,7 @@
 {
-  "name": "@analytics/react",
+  "name": "trackly-react",
   "version": "0.1.0",
-  "description": "React integration for @analytics/sdk",
+  "description": "React integration for trackly-sdk",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,13 +17,25 @@
     "analytics",
     "react",
     "hooks",
-    "tracking"
+    "tracking",
+    "react-hooks",
+    "event-tracking",
+    "typescript"
   ],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaycfarias/trackly.git",
+    "directory": "packages/react"
+  },
+  "bugs": {
+    "url": "https://github.com/kaycfarias/trackly/issues"
+  },
+  "homepage": "https://github.com/kaycfarias/trackly/tree/main/packages/react#readme",
   "peerDependencies": {
     "react": ">=18.0.0",
-    "@analytics/sdk": "workspace:*"
+    "trackly-sdk": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.2.48",
@@ -31,6 +43,6 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@analytics/sdk": "workspace:*"
+    "trackly-sdk": "workspace:*"
   }
 }
