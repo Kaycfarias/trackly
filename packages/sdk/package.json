@@ -27,11 +27,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kaycfarias/trackly.git",
+    "url": "https://github.com/Kaycfarias/trackly",
     "directory": "packages/sdk"
   },
   "bugs": {
-    "url": "https://github.com/kaycfarias/trackly/issues"
+    "url": "https://github.com/Kaycfarias/trackly/issues"
   },
   "homepage": "https://github.com/kaycfarias/trackly/tree/main/packages/sdk#readme",
   "devDependencies": {

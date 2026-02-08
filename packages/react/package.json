@@ -26,13 +26,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kaycfarias/trackly.git",
+    "url": "https://github.com/Kaycfarias/trackly",
     "directory": "packages/react"
   },
   "bugs": {
-    "url": "https://github.com/kaycfarias/trackly/issues"
+    "url": "https://github.com/Kaycfarias/trackly/issues"
   },
-  "homepage": "https://github.com/kaycfarias/trackly/tree/main/packages/react#readme",
+  "homepage": "https://github.com/Kaycfarias/trackly/tree/main/packages/react#readme",
   "peerDependencies": {
     "react": ">=18.0.0",
     "trackly-sdk": "workspace:*"
