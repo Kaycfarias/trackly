@@ -14,7 +14,7 @@ importers:
 
   packages/react:
     dependencies:
-      '@analytics/sdk':
+      trackly-sdk:
         specifier: workspace:*
         version: link:../sdk
     devDependencies:

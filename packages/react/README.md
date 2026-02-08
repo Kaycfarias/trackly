@@ -1,11 +1,15 @@
-# @analytics/react
+# trackly-react
 
-React integration for [@analytics/sdk](../sdk).
+React integration for [trackly-sdk](../sdk).
 
 ## 🚀 Instalação
 
 ```bash
-pnpm add @analytics/sdk @analytics/react react
+npm install trackly-sdk trackly-react
+# ou
+yarn add trackly-sdk trackly-react
+# ou
+pnpm add trackly-sdk trackly-react
 ```
 
 ## 📦 Uso
@@ -14,7 +18,7 @@ pnpm add @analytics/sdk @analytics/react react
 
 ```tsx
 // app/layout.tsx
-import { AnalyticsProvider } from "@analytics/react";
+import { AnalyticsProvider } from "trackly-react";
 
 export default function RootLayout({ children }) {
   return (
@@ -37,7 +41,7 @@ export default function RootLayout({ children }) {
 ### 2. Use o hook `useAnalytics`
 
 ```tsx
-import { useAnalytics } from "@analytics/react";
+import { useAnalytics } from "trackly-react";
 
 function MyComponent() {
   const analytics = useAnalytics();
@@ -57,7 +61,7 @@ function MyComponent() {
 ### 3. Use componentes de tracking
 
 ```tsx
-import { TrackClick, TrackView } from '@analytics/react';
+import { TrackClick, TrackView } from 'trackly-react';
 
 // Track clicks
 <TrackClick eventName="signup_clicked" properties={{ source: 'header' }}>
@@ -73,7 +77,7 @@ import { TrackClick, TrackView } from '@analytics/react';
 ### 4. Use hooks utilitários
 
 ```tsx
-import { usePageview, useTrackEvent, useIdentify } from "@analytics/react";
+import { usePageview, useTrackEvent, useIdentify } from "trackly-react";
 
 function ProductPage({ productId }) {
   // Auto-track pageview on mount
@@ -113,7 +117,7 @@ function App({ user }) {
 Totalmente tipado. Import types do SDK:
 
 ```tsx
-import type { EventProperties, UserTraits } from "@analytics/react";
+import type { EventProperties, UserTraits } from "trackly-react";
 ```
 
 ## 📝 Licença

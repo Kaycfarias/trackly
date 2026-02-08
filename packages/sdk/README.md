@@ -1,15 +1,15 @@
-# Analytics SDK
+# Trackly SDK
 
 SDK leve de analytics para tracking de eventos no browser.
 
 ## 🚀 Instalação
 
 ```bash
-pnpm add @analytics/sdk
+npm install trackly-sdk
 # ou
-npm install @analytics/sdk
+yarn add trackly-sdk
 # ou
-yarn add @analytics/sdk
+pnpm add trackly-sdk
 ```
 
 ## 📦 Uso
@@ -17,7 +17,7 @@ yarn add @analytics/sdk
 ### Inicialização
 
 ```typescript
-import { Analytics } from "@analytics/sdk";
+import { Analytics } from "trackly-sdk";
 
 const analytics = new Analytics({
   apiUrl: "https://api.seuapp.com/events",

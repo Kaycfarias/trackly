@@ -1,5 +1,5 @@
 {
-  "name": "@analytics/sdk",
+  "name": "trackly-sdk",
   "version": "0.1.0",
   "description": "SDK leve de analytics para tracking de eventos no browser",
   "main": "dist/index.js",
@@ -17,10 +17,23 @@
     "analytics",
     "tracking",
     "events",
-    "browser"
+    "browser",
+    "typescript",
+    "zero-dependencies",
+    "batching",
+    "event-tracking"
   ],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaycfarias/trackly.git",
+    "directory": "packages/sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/kaycfarias/trackly/issues"
+  },
+  "homepage": "https://github.com/kaycfarias/trackly/tree/main/packages/sdk#readme",
   "devDependencies": {
     "typescript": "^5.9.3"
   }

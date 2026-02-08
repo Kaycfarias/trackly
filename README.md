@@ -1,15 +1,15 @@
-# Analytics SDK Monorepo
+# Trackly SDK Monorepo
 
 Event tracking SDK para browser com companion package React.
 
 ## 📦 Packages
 
-### [@analytics/sdk](./packages/sdk)
+### [trackly-sdk](./packages/sdk)
 
 Core SDK vanilla TypeScript. **Zero dependências**.
 
 ```typescript
-import { Analytics } from "@analytics/sdk";
+import { Analytics } from "trackly-sdk";
 
 const analytics = new Analytics({
   apiUrl: "https://api.example.com/events",
@@ -20,12 +20,12 @@ analytics.pageview();
 analytics.identify("user_123", { email: "user@example.com" });
 ```
 
-### [@analytics/react](./packages/react)
+### [trackly-react](./packages/react)
 
 Integração React com hooks e componentes.
 
 ```tsx
-import { AnalyticsProvider, useAnalytics, TrackClick } from "@analytics/react";
+import { AnalyticsProvider, useAnalytics, TrackClick } from "trackly-react";
 
 function App() {
   return (
@@ -71,10 +71,10 @@ pnpm dev
 pnpm clean
 
 # Build apenas SDK
-pnpm --filter @analytics/sdk build
+pnpm --filter trackly-sdk build
 
 # Build apenas React
-pnpm --filter @analytics/react build
+pnpm --filter trackly-react build
 ```
 
 ## 📝 Licença

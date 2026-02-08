@@ -1,11 +1,10 @@
 {
-  "name": "@analytics/monorepo",
+  "name": "@trackly/monorepo",
   "version": "0.1.0",
-  "private": true,
-  "description": "Analytics SDK monorepo",
+  "description": "Trackly SDK monorepo",
   "scripts": {
-    "build": "pnpm --filter @analytics/sdk build && pnpm --filter @analytics/react build",
-    "dev": "pnpm --parallel --filter @analytics/sdk --filter @analytics/react dev",
+    "build": "pnpm --filter trackly-sdk build && pnpm --filter trackly-react build",
+    "dev": "pnpm --parallel --filter trackly-sdk --filter trackly-react dev",
     "clean": "pnpm --recursive clean && rm -rf node_modules/.cache"
   },
   "keywords": [

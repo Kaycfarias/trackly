@@ -1,10 +1,14 @@
-# Copilot Instructions - Analytics SDK
+# Copilot Instructions - Trackly SDK
 
 ## Visão Geral
 
-**Monorepo pnpm** com 2 packages: SDK vanilla TypeScript (`@analytics/sdk`) + integração React (`@analytics/react`). Zero dependências externas no core.
+**Monorepo pnpm** com 2 packages: SDK vanilla TypeScript (`trackly-sdk`) + integração React (`trackly-react`). Zero dependências externas no core.
 
 **Arquitetura:** `Analytics (facade) → EventQueue (batching) → Transport (HTTP/sendBeacon)`
+
+**Publicado no npm:**
+- `trackly-sdk` - Core analytics SDK
+- `trackly-react` - React hooks e components
 
 ## Arquitetura & Data Flow
 
@@ -130,8 +134,8 @@ pnpm clean        # Limpa todos os dist/ + cache
 **Package individual:**
 
 ```bash
-pnpm --filter @analytics/sdk build     # Build apenas SDK
-pnpm --filter @analytics/react dev     # Watch apenas React
+pnpm --filter trackly-sdk build     # Build apenas SDK
+pnpm --filter trackly-react dev     # Watch apenas React
 ```
 
 **Output:** Cada package gera `dist/index.js` + `dist/index.d.ts` via `tsc` direto (sem bundler).
