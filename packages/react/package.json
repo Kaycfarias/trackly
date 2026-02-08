@@ -1,6 +1,6 @@
 {
   "name": "trackly-react",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "React integration for trackly-sdk",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -22,7 +22,7 @@
     "event-tracking",
     "typescript"
   ],
-  "author": "",
+  "author": "Kayc Farias",
   "license": "MIT",
   "repository": {
     "type": "git",

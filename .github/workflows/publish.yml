@@ -10,52 +10,56 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write
-      id-token: write # OIDC obrigatório
+      id-token: write   # obrigatório pro OIDC
+      contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
           cache: pnpm
 
-      # garante npm compatível com OIDC
+      # 🔥 MUITO importante (OIDC exige npm moderno)
       - name: Upgrade npm
         run: npm install -g npm@latest
 
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build
+      - name: Install
+        run: pnpm install --frozen-lockfile
 
-      - name: Extract version from tag
-        id: version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+      - name: Build
+        run: pnpm build
 
-      - name: Verify versions match
+      # valida versão = tag
+      - name: Check versions
         run: |
-          SDK_VERSION=$(node -p "require('./packages/sdk/package.json').version")
-          REACT_VERSION=$(node -p "require('./packages/react/package.json').version")
+          TAG=${GITHUB_REF#refs/tags/v}
 
-          if [ "$SDK_VERSION" != "${{ steps.version.outputs.VERSION }}" ] || \
-             [ "$REACT_VERSION" != "${{ steps.version.outputs.VERSION }}" ]; then
-            echo "❌ Version mismatch"
-            exit 1
-          fi
+          SDK=$(node -p "require('./packages/sdk/package.json').version")
+          REACT=$(node -p "require('./packages/react/package.json').version")
 
-      # 🚀 publish via OIDC (SEM TOKEN)
-      - name: Publish trackly-sdk
+          echo "Tag: $TAG"
+          echo "SDK: $SDK"
+          echo "React: $REACT"
+
+          [ "$SDK" = "$TAG" ] || exit 1
+          [ "$REACT" = "$TAG" ] || exit 1
+
+      # 🚀 publish via OIDC (sem token)
+      - name: Publish SDK
         working-directory: packages/sdk
         run: npm publish --access public --provenance
 
-      - name: Publish trackly-react
+      - name: Publish React
         working-directory: packages/react
         run: npm publish --access public --provenance
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
-        with:
-          name: Release ${{ steps.version.outputs.VERSION }}

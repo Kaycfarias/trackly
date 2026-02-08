@@ -1,6 +1,6 @@
 {
   "name": "trackly-sdk",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "SDK leve de analytics para tracking de eventos no browser",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -23,7 +23,7 @@
     "batching",
     "event-tracking"
   ],
-  "author": "",
+  "author": "Kayc Farias",
   "license": "MIT",
   "repository": {
     "type": "git",
