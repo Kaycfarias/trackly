@@ -7,31 +7,31 @@ on:
 
 jobs:
   publish:
-    name: Publish packages
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
-      id-token: write
+      id-token: write   # OIDC obrigatório
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: "20"
-          registry-url: "https://registry.npmjs.org"
-          cache: "pnpm"
+          version: 9
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          cache: pnpm
 
-      - name: Build packages
-        run: pnpm build
+      # garante npm compatível com OIDC
+      - name: Upgrade npm
+        run: npm install -g npm@latest
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
 
       - name: Extract version from tag
         id: version
@@ -41,44 +41,23 @@ jobs:
         run: |
           SDK_VERSION=$(node -p "require('./packages/sdk/package.json').version")
           REACT_VERSION=$(node -p "require('./packages/react/package.json').version")
-          TAG_VERSION="${{ steps.version.outputs.VERSION }}"
 
-          echo "Tag version: $TAG_VERSION"
-          echo "SDK version: $SDK_VERSION"
-          echo "React version: $REACT_VERSION"
-
-          if [ "$SDK_VERSION" != "$TAG_VERSION" ] || [ "$REACT_VERSION" != "$TAG_VERSION" ]; then
-            echo "❌ Version mismatch!"
+          if [ "$SDK_VERSION" != "${{ steps.version.outputs.VERSION }}" ] || \
+             [ "$REACT_VERSION" != "${{ steps.version.outputs.VERSION }}" ]; then
+            echo "❌ Version mismatch"
             exit 1
           fi
 
+      # 🚀 publish via OIDC (SEM TOKEN)
       - name: Publish trackly-sdk
-        run: |
-          cd packages/sdk
-          npm publish --access public --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        working-directory: packages/sdk
+        run: npm publish --access public --provenance
 
       - name: Publish trackly-react
-        run: |
-          cd packages/react
-          npm publish --access public --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        working-directory: packages/react
+        run: npm publish --access public --provenance
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           name: Release ${{ steps.version.outputs.VERSION }}
-          body: |
-            ## 📦 Packages Published
-
-            - `trackly-sdk@${{ steps.version.outputs.VERSION }}`
-            - `trackly-react@${{ steps.version.outputs.VERSION }}`
-
-            Install:
-            ```bash
-            npm install trackly-sdk@${{ steps.version.outputs.VERSION }} trackly-react@${{ steps.version.outputs.VERSION }}
-            ```
-          draft: false
-          prerelease: false
