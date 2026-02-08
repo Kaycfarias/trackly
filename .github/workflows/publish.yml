@@ -24,6 +24,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          registry-url: "https://registry.npmjs.org"
           cache: "pnpm"
 
       - name: Install dependencies
@@ -55,11 +56,15 @@ jobs:
         run: |
           cd packages/sdk
           npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish trackly-react
         run: |
           cd packages/react
           npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
