@@ -55,12 +55,12 @@ jobs:
       - name: Publish trackly-sdk
         run: |
           cd packages/sdk
-          npm publish --access public --provenance
+          pnpm publish --access public --provenance --no-git-checks
 
       - name: Publish trackly-react
         run: |
           cd packages/react
-          npm publish --access public --provenance
+          pnpm publish --access public --provenance --no-git-checks
 
       - name: Create GitHub Release
         uses: actions/create-release@v1
